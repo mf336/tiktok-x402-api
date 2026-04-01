@@ -1,0 +1,19 @@
+{
+  "name": "tiktok-x402-api",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts"
+  },
+  "dependencies": {
+    "hono": "^4.0.0",
+    "@x402/hono": "^2.8.0",
+    "@x402/core": "^2.8.0",
+    "@x402/evm": "^2.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/bun": "latest"
+  }
+}
