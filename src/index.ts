@@ -48,7 +48,7 @@ const ROUTES = {
 const app = new Hono()
 
 // x402 payment middleware — gates all /api/tiktok/* routes
-app.use(paymentMiddleware(ROUTES, server))
+app.use(paymentMiddleware(ROUTES, server, undefined, undefined, false))
 
 // ── Discovery endpoint ───────────────────────────────────────────────────────
 app.get("/openapi.json", (c) =>
