@@ -17,28 +17,28 @@ if (!APIFY_TOKEN) {
 }
 
 // ── x402 setup (USDC on Base Sepolia testnet) ────────────────────────────────
-const facilitator = new HTTPFacilitatorClient({ url: "https://x402.org/facilitator" })
+const facilitator = new HTTPFacilitatorClient({ url: "https://api.cdp.coinbase.com/platform/v2/x402" })
 const server = new x402ResourceServer(facilitator)
-  .register("eip155:84532", new ExactEvmScheme())
+  .register("eip155:8453", new ExactEvmScheme())
 
 const ROUTES = {
   "GET /api/tiktok/user": {
-    accepts: [{ scheme: "exact" as const, price: "$0.05", network: "eip155:84532" as Network, payTo: RECIPIENT as `0x${string}` }],
+    accepts: [{ scheme: "exact" as const, price: "$0.05", network: "eip155:8453" as Network, payTo: RECIPIENT as `0x${string}` }],
     description: "TikTok user profile scrape",
     mimeType: "application/json",
   },
   "GET /api/tiktok/hashtag": {
-    accepts: [{ scheme: "exact" as const, price: "$0.10", network: "eip155:84532" as Network, payTo: RECIPIENT as `0x${string}` }],
+    accepts: [{ scheme: "exact" as const, price: "$0.10", network: "eip155:8453" as Network, payTo: RECIPIENT as `0x${string}` }],
     description: "TikTok hashtag scrape",
     mimeType: "application/json",
   },
   "GET /api/tiktok/video": {
-    accepts: [{ scheme: "exact" as const, price: "$0.02", network: "eip155:84532" as Network, payTo: RECIPIENT as `0x${string}` }],
+    accepts: [{ scheme: "exact" as const, price: "$0.02", network: "eip155:8453" as Network, payTo: RECIPIENT as `0x${string}` }],
     description: "TikTok video metadata",
     mimeType: "application/json",
   },
   "GET /api/tiktok/search": {
-    accepts: [{ scheme: "exact" as const, price: "$0.05", network: "eip155:84532" as Network, payTo: RECIPIENT as `0x${string}` }],
+    accepts: [{ scheme: "exact" as const, price: "$0.05", network: "eip155:8453" as Network, payTo: RECIPIENT as `0x${string}` }],
     description: "TikTok keyword search",
     mimeType: "application/json",
   },
@@ -149,7 +149,7 @@ app.get("/health", (c) =>
     status: "ok",
     service: "TikTok x402 API",
     version: "1.0.0",
-    payments: "USDC on Base Sepolia (x402)",
+    payments: "USDC on Base mainnet (x402)",
     endpoints: [
       { path: "/api/tiktok/user",    price: "$0.05 USDC", params: "?handle=@username&limit=10" },
       { path: "/api/tiktok/hashtag", price: "$0.10 USDC", params: "?tag=fyp&limit=10" },
@@ -203,7 +203,7 @@ console.log(`
     ├─ GET /api/tiktok/video   — $0.02 USDC
     └─ GET /api/tiktok/search  — $0.05 USDC
 
-    Payments: USDC on Base Sepolia (x402)
+    Payments: USDC on Base mainnet (x402)
     Recipient: ${RECIPIENT}
 `)
 
