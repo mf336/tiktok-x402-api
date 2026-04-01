@@ -17,7 +17,7 @@ if (!APIFY_TOKEN) {
 }
 
 // ── x402 setup (USDC on Base Sepolia testnet) ────────────────────────────────
-const facilitator = new HTTPFacilitatorClient({ url: "https://api.cdp.coinbase.com/platform/v2/x402" })
+const facilitator = new HTTPFacilitatorClient({ url: "https://facilitator.payai.network" })
 const server = new x402ResourceServer(facilitator)
   .register("eip155:8453", new ExactEvmScheme())
 
